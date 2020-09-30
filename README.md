@@ -1,12 +1,14 @@
 # Busca Gifs
-Buscador de Gifs desenvolvido utilizando *flutter* com a linguagem *dart*
+Buscador de Gifs utilizando *flutter* com a linguagem *dart*
 
-#Funcionalidade
-Buscar gifs na internet conforme seleção
+### Funcionalidade
 
 ### Screeenchots
 
 ### Widgets
+- GridView
+- GestureDetector
+- 
 
 ### Dependencias
  - share: ^0.6.1+1

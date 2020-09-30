@@ -16,19 +16,19 @@ class Api{
   String limit;
   int offset;
   String lang;
-  String q;
+  String search;
 
-  Api({this.type, this.offset, this.q, this.limit, this.lang});
+  Api({this.type, this.offset, this.search, this.limit, this.lang});
 
   bool isTypeSearch() => this.type == TYPE_SEARCH;
   bool isTypeTrending() => this.type == TYPE_TRENDING;
 
   String getLimit(){
-    return this.limit.isEmpty ? DEFAULT_LIMIT : this.limit;
+    return this.limit == null ? DEFAULT_LIMIT : this.limit;
   }
 
   String getLang(){
-    return this.lang.isEmpty ? DEFAULT_LANG : this.lang;
+    return this.lang == null ? DEFAULT_LANG : this.lang;
   }
 
   String getType(){
@@ -37,27 +37,27 @@ class Api{
 
   String get url{
     String params = "api_key=$API_KEY&limit=${getLimit()}&rating=g";
-
     if (isTypeSearch()){
-      params += "&offset=${offset ?? 0 }&q=$q";
+      params += "&offset=${offset ?? 0 }&q=$search&lang=${getLang()}";
     }
-    return "$BASE_URL/$params";
+    return "$BASE_URL/$type?$params";
+  }
+
+  String getUrl(){
+    return url;
   }
 
   Future<Map<String, dynamic>> getData() async {
-
-    print("Aqui");
-
-    // http.Response response = await http.get(url);
-    // return json.decode(response.body);
+    http.Response response = await http.get(url);
+    return json.decode(response.body);
   }
 
   factory Api.trending({offset}) {
     return Api(type: 'trending', offset: offset ?? 0);
   }
 
-  factory Api.search(term, {offset}) {
-    return Api(type: 'search', q: term, offset: offset ?? 0);
+  factory Api.search(search, {offset}) {
+    return Api(type: 'search', search: search, offset: offset ?? 0);
   }
 
 }

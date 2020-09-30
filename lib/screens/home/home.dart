@@ -1,5 +1,6 @@
+import 'package:busca_gifs/components/appbar.dart';
 import 'package:busca_gifs/events/home.dart';
-import 'package:busca_gifs/services/api.dart';
+import 'package:busca_gifs/screens/home/body.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -14,12 +15,14 @@ class _HomeState extends State<Home> {
   void initState(){
     super.initState();
     this.homeEvents = HomeEvents(this);
-
-    Api.trending().getData().then((value) => print(value));
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: HomeAppBar().build(),
+      body: HomeBody(gifs: homeEvents.fetchGifs()).build(),
+      backgroundColor: Colors.black,
+      );
   }
 }
