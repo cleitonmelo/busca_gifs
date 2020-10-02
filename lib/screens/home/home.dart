@@ -21,7 +21,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: HomeAppBar().build(),
-      body: HomeBody(gifs: homeEvents.fetchGifs()).build(),
+      body: HomeBody(events: this.homeEvents).build(),
       backgroundColor: Colors.black,
       );
   }

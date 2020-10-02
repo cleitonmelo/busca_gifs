@@ -1,11 +1,15 @@
 import 'package:busca_gifs/components/loading.dart';
+import 'package:busca_gifs/events/home.dart';
+import 'package:busca_gifs/model/gifs.dart';
 import 'package:busca_gifs/screens/home/grid.dart';
 import 'package:flutter/material.dart';
 
 class HomeBody {
-  Future<Map> gifs;
   List loadingStates = [ConnectionState.none, ConnectionState.waiting];
-  HomeBody({this.gifs});
+  List<Gifs> items;
+  HomeEvents events;
+
+  HomeBody({this.events});
 
   Widget build() {
     return Column(
@@ -33,24 +37,27 @@ class HomeBody {
       ),
       textAlign: TextAlign.center,
       controller: controller,
+      onSubmitted: (text){
+        events.state.setState(() {
+          events.searchSubmit(text);
+        });
+      },
     );
   }
 
-  FutureBuilder loadingGifs(){
+  FutureBuilder loadingGifs() {
     return FutureBuilder(
-        future: this.gifs,
-        builder: (context, snapshot) {
-          if(loadingStates.contains(snapshot.connectionState)){
-            return Loading().circularWaiting();
-          }
-          if(snapshot.hasError){
-             return Loading().iconError();
-          }
-          return gridGifs(context, snapshot);
-        },
+      future: events.fetchGifs(),
+      builder: (context, snapshot) {
+        if (loadingStates.contains(snapshot.connectionState)) {
+          return Loading().circularWaiting();
+        }
+        if (snapshot.hasError) {
+          return Loading().iconError();
+        }
+        items = Gifs.fillCollection(snapshot.data["data"]);
+        return HomeGrid(items: items, onSearch: events.isSearch()).gridGifs(context);
+      },
     );
   }
-
-
-
 }
