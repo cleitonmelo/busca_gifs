@@ -8,38 +8,39 @@ class HomeGrid{
   HomeGrid({this.items, this.onSearch});
 
   Widget gridGifs(BuildContext context) {
-    print(this.onSearch);
+    print(onSearch ? items.length - 1  : items.length);
     return GridView.builder(
         padding: EdgeInsets.all(10.0),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2, crossAxisSpacing: 10.0, mainAxisSpacing: 10.0),
-        itemCount: onSearch ? items.length+1  : items.length,
+        itemCount: onSearch ? items.length - 1  : items.length,
         itemBuilder: (context, index) {
-          if(onSearch || index < items.length){
+            if(onSearch && index == items.length){
+              return loadingGifs();
+            }
             return GestureDetector(
               child: Image.network(
                   items[index].url,
                   height: 300.0,
                   fit: BoxFit.cover),
             );
-          }
-          return Container(
-            child: GestureDetector(
-              child: Padding(
-                padding: EdgeInsets.all(50.0),
-                child: Column(
-                  children: [
-                    Icon(Icons.add, color: Colors.white, size: 50.0),
-                    Text("Carregar mais ...", style: TextStyle(color: Colors.white, fontSize: 20.0))
-                  ],
-                ),
-              )
-
-            ),
-          );
         });
   }
 
+  Widget loadingGifs() {
+    return Container(
+      child: GestureDetector(
+          child: Padding(
+            padding: EdgeInsets.all(50.0),
+            child: Column(
+              children: [
+                Icon(Icons.add, color: Colors.white, size: 50.0)
+              ],
+            ),
+          )
+      ),
+    );
+  }
 }
 
 
