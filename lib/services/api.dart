@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 class Api{
   static const BASE_URL = "https://api.giphy.com/v1/gifs";
   static const API_KEY = "QkVlgVSIFnXi0bHsBzhV4LRDFOrR6p1d";
-  static const DEFAULT_LIMIT = "20";
+  static const DEFAULT_LIMIT = 19;
   static const DEFAULT_LANG = "pt";
   static const DEFAULT_RANTING = "g";
 
@@ -24,7 +24,7 @@ class Api{
   bool isTypeTrending() => this.type == TYPE_TRENDING;
 
   String getLimit(){
-    return this.limit == null ? DEFAULT_LIMIT : this.limit;
+    return this.limit == null ? DEFAULT_LIMIT.toString() : this.limit;
   }
 
   String getLang(){

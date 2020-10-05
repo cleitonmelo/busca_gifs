@@ -8,7 +8,8 @@ Buscador de Gifs utilizando *flutter* com a linguagem *dart*
 ### Widgets
 - GridView
 - GestureDetector
-- 
+- Navigator
+- MaterialPageRoute
 
 ### Dependencias
  - share: ^0.6.1+1

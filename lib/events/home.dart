@@ -1,6 +1,4 @@
-import 'package:busca_gifs/components/loading.dart';
 import 'package:busca_gifs/model/gifs.dart';
-import 'package:busca_gifs/screens/home/grid.dart';
 import 'package:busca_gifs/screens/home/home.dart';
 import 'package:busca_gifs/services/api.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +8,7 @@ class HomeEvents{
   List<Gifs> items;
   State<Home> state;
   String search;
+  int offset = 0;
 
   HomeEvents(this.state);
 
@@ -18,6 +17,13 @@ class HomeEvents{
       this.search = value;
       this.loadGifts();
     }
+  }
+
+  void onTapLoadingGifs(value) async{
+    this.offset += Api.DEFAULT_LIMIT;
+    state.setState(() {
+      this.loadGifts();
+    });
   }
 
   loadGifts({Function onDone}) async {
@@ -35,8 +41,8 @@ class HomeEvents{
 
   Future<Map> fetchGifs() async{
     if(search == null){
-      return await Api.trending().getData();
+      return await Api.trending(offset: this.offset).getData();
     }
-    return await Api.search(search).getData();
+    return await Api.search(search, offset: this.offset).getData();
   }
 }

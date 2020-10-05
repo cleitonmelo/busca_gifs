@@ -56,7 +56,7 @@ class HomeBody {
           return Loading().iconError();
         }
         items = Gifs.fillCollection(snapshot.data["data"]);
-        return HomeGrid(items: items, onSearch: events.isSearch()).gridGifs(context);
+        return HomeGrid(items: items, events: events).gridGifs(context);
       },
     );
   }
