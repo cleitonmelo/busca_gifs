@@ -2,6 +2,8 @@ import 'package:busca_gifs/events/home.dart';
 import 'package:busca_gifs/model/gifs.dart';
 import 'package:busca_gifs/screens/home/gif.dart';
 import 'package:flutter/material.dart';
+import 'package:share/share.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 class HomeGrid{
   List<Gifs> items;
@@ -21,14 +23,19 @@ class HomeGrid{
               return loadingGifs(this.events, items.length);
             }
             return GestureDetector(
-              child: Image.network(
-                  items[index].url,
-                  height: 300.0,
-                  fit: BoxFit.cover),
+              child: FadeInImage.memoryNetwork(
+                  placeholder: kTransparentImage,
+                  image: items[index].url,
+                  fit: BoxFit.cover,
+                  height: 300.0
+              ),
               onTap: (){
                 Navigator.push(context,
                   MaterialPageRoute(builder: (context) => GifPage(items[index]),)
                 );
+              },
+              onLongPress: (){
+                Share.share(items[index].url);
               },
             );
         });

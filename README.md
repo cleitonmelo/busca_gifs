@@ -10,6 +10,7 @@ Buscador de Gifs utilizando *flutter* com a linguagem *dart*
 - GestureDetector
 - Navigator
 - MaterialPageRoute
+- FadeInImage
 
 ### Dependencias
  - share: ^0.6.1+1

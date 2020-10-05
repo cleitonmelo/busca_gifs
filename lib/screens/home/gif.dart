@@ -1,5 +1,6 @@
 import 'package:busca_gifs/model/gifs.dart';
 import 'package:flutter/material.dart';
+import 'package:share/share.dart';
 
 class GifPage extends StatelessWidget {
   final Gifs item;
@@ -14,7 +15,10 @@ class GifPage extends StatelessWidget {
         backgroundColor: Colors.black,
         actions: [
           IconButton(
-            icon: Icon(Icons.share, color: Colors.white,)
+            icon: Icon(Icons.share, color: Colors.white),
+            onPressed: (){
+              Share.share(item.url);
+            },
           )
         ],
       ),

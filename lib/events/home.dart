@@ -33,7 +33,7 @@ class HomeEvents{
   }
 
   bool isSearch(){
-    if(this.search == null){
+    if(this.search == null || this.search.isEmpty){
       return false;
     }
     return true;
