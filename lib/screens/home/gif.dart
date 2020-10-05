@@ -1,10 +1,10 @@
-import 'package:busca_gifs/model/gifs.dart';
+import 'package:busca_gifs/model/gif.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:share/share.dart';
 
 class GifPage extends StatelessWidget {
-  final Gifs item;
+  final Gif item;
 
   GifPage(this.item);
 

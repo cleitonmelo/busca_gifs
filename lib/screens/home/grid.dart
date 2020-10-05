@@ -1,5 +1,5 @@
 import 'package:busca_gifs/events/home.dart';
-import 'package:busca_gifs/model/gifs.dart';
+import 'package:busca_gifs/model/gif.dart';
 import 'package:busca_gifs/screens/home/gif.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -7,7 +7,7 @@ import 'package:share/share.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class HomeGrid {
-  List<Gifs> items;
+  List<Gif> items;
   int offset = 19;
   HomeEvents events;
 

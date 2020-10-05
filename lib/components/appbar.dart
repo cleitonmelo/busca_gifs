@@ -5,7 +5,6 @@ class HomeAppBar {
   Widget build() {
     return AppBar(
         backgroundColor: Colors.deepPurpleAccent,
-        // title: Image.network(_image),
         title: Text(
               "Buscador de Gifs",
             style: GoogleFonts.share(fontSize: 25.0,
@@ -14,6 +13,4 @@ class HomeAppBar {
         centerTitle: true,
         );
   }
-
-
 }

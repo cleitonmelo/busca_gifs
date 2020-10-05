@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 
-class Gifs{
+class Gif{
   String id;
   String url;
   String title;
 
-  Gifs({@required this.id, @required this.url, @required this.title});
+  Gif({@required this.id, @required this.url, @required this.title});
 
   String toString() {
     return toJson().toString();
   }
 
-  factory Gifs.fromJson(Map<String, dynamic> json) {
-    return Gifs(
+  factory Gif.fromJson(Map<String, dynamic> json) {
+    return Gif(
       id: json["id"],
       url: json["images"]["fixed_height"]["url"],
       title: json["title"]
@@ -23,11 +23,11 @@ class Gifs{
     return {'id': id, 'title': title, 'url': url};
   }
 
-  static List<Gifs> fillCollection(List json) {
-    List<Gifs> items = [];
+  static List<Gif> fillCollection(List json) {
+    List<Gif> items = [];
 
     json.forEach((item) {
-      items.add(Gifs.fromJson(item));
+      items.add(Gif.fromJson(item));
     });
 
     return items;

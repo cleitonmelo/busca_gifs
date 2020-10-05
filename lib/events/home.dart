@@ -1,11 +1,11 @@
-import 'package:busca_gifs/model/gifs.dart';
+import 'package:busca_gifs/model/gif.dart';
 import 'package:busca_gifs/screens/home/home.dart';
 import 'package:busca_gifs/services/api.dart';
 import 'package:flutter/material.dart';
 
 class HomeEvents{
   List loadingStates = [ConnectionState.none, ConnectionState.waiting];
-  List<Gifs> items;
+  List<Gif> items;
   State<Home> state;
   String search;
   int offset = 0;
@@ -28,7 +28,7 @@ class HomeEvents{
 
   loadGifts({Function onDone}) async {
     await fetchGifs().then((values) {
-      items = Gifs.fillCollection(values["data"]);
+      items = Gif.fillCollection(values["data"]);
     });
   }
 

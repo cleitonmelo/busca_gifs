@@ -1,12 +1,12 @@
 import 'package:busca_gifs/components/loading.dart';
 import 'package:busca_gifs/events/home.dart';
-import 'package:busca_gifs/model/gifs.dart';
+import 'package:busca_gifs/model/gif.dart';
 import 'package:busca_gifs/screens/home/grid.dart';
 import 'package:flutter/material.dart';
 
 class HomeBody {
   List loadingStates = [ConnectionState.none, ConnectionState.waiting];
-  List<Gifs> items;
+  List<Gif> items;
   HomeEvents events;
 
   HomeBody({this.events});
@@ -55,7 +55,7 @@ class HomeBody {
         if (snapshot.hasError) {
           return Loading().iconError();
         }
-        items = Gifs.fillCollection(snapshot.data["data"]);
+        items = Gif.fillCollection(snapshot.data["data"]);
         return HomeGrid(items: items, events: events).gridGifs(context);
       },
     );

@@ -43,10 +43,6 @@ class Api{
     return "$BASE_URL/$type?$params";
   }
 
-  String getUrl(){
-    return url;
-  }
-
   Future<Map<String, dynamic>> getData() async {
     http.Response response = await http.get(url);
     return json.decode(response.body);
