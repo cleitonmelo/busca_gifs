@@ -1,5 +1,6 @@
 import 'package:busca_gifs/model/gifs.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:share/share.dart';
 
 class GifPage extends StatelessWidget {
@@ -11,8 +12,11 @@ class GifPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Visualizar Gif"),
-        backgroundColor: Colors.black,
+        title: Text(
+            "Visualizar Gif",
+            style: GoogleFonts.share(fontSize: 20.0),
+            ),
+        backgroundColor: Colors.deepPurpleAccent,
         actions: [
           IconButton(
             icon: Icon(Icons.share, color: Colors.white),
@@ -22,7 +26,7 @@ class GifPage extends StatelessWidget {
           )
         ],
       ),
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.deepPurple,
       body: Container(
         child: Center(
           child: Image.network(item.url),

@@ -22,7 +22,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: HomeAppBar().build(),
       body: HomeBody(events: this.homeEvents).build(),
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.deepPurple,
       );
   }
 }
